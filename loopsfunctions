@@ -1,0 +1,94 @@
+function compact(arr) {
+  return arr.filter((value, index, self) => {
+    return self.indexOf(value) === index;
+  });
+}
+
+function createArray(start, end) {
+  const arr = [];
+  for (let i = start; i <= end; i++) {
+    arr.push(i);
+  }
+  return arr;
+}
+
+function printUniqueNumbers(a, b) {
+  for (let i = a; i <= b; i++) {
+    for (let j = 0; j < i - a + 1; j++) {
+      console.log(i);
+    }
+  }
+}
+
+function randArray(k) {
+  const arr = [];
+  for (let i = 0; i < k; i++) {
+    arr.push(Math.floor(Math.random() * 500) + 1);
+  }
+  return arr;
+}
+
+function showByTypes(arr) {
+  const primitiveArrays = [];
+  const otherArrays = [];
+
+  function isArrayPrimitive(array) {
+    for (let i = 0; i < array.length; i++) {
+      if (typeof array[i] !== "number" && typeof array[i] !== "string") {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  for (const item of arr) {
+    if (Array.isArray(item)) {
+      if (isArrayPrimitive(item)) {
+        primitiveArrays.push(...item);
+      } else {
+        otherArrays.push(item);
+      }
+    } else if (typeof item === "number" || typeof item === "string") {
+      primitiveArrays.push(item);
+    }
+  }
+
+  console.log(primitiveArrays);
+  console.log(otherArrays);
+}
+
+function calc(a, b, op) {
+  switch (op) {
+    case 1:
+      return a - b;
+    case 2:
+      return a * b;
+    case 3:
+      return a / b;
+    default:
+      return a + b;
+  }
+}
+
+function findUnique(arr) {
+  const uniqueSet = new Set(arr);
+  return uniqueSet.size === arr.length;
+}
+
+const arr = [5, 3, 4, 5, 6, 7, 3];
+const arr2 = compact(arr);
+console.log(arr2);
+
+let arr3 = createArray(2, 9);
+console.log(arr3);
+
+printUniqueNumbers(2, 7);
+
+console.log(randArray(5));
+
+let arr4 = [5, "Limit", 12, "a", "3", 99, 2, [2, 4, 3, "33", "a", "text"], "strong", "broun"];
+showByTypes(arr4);
+
+console.log(calc(5, 2, 2));
+console.log(findUnique([1, 2, 3, 5, 3]));
+console.log(findUnique([1, 2, 3, 5, 11]));
